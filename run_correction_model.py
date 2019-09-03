@@ -132,7 +132,7 @@ def readfile(filename):
                 continue
             splits = line.split(' ')
             sentence.append(splits[0])
-            fea.append(splits[-1][:-1])
+            fea.append(splits[-2])
             label.append(splits[-1][:-1])
         except Exception as e:
             pass
