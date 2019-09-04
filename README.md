@@ -1,8 +1,14 @@
 # OpenNER
 
+### Requirements
+- python3
+- pip3 install -r requirements.txt
+
 ### Example Usage
 
 Let's run named entity recognition (NER) over an example sentence. All you need to do is load OpenNER and use it to predict tags for the sentence.
+
+#### 1. Load OpenNER in python
 
 #### Predict one sentence
 
@@ -78,5 +84,8 @@ UCSB B-ORG
 . O
 ```
 
+#### 2. Use OpenNER in command
 
-
+```
+CUDA_VISIBLE_DEVICES=0 python main.py --input=data/input.txt --output=data/output.txt
+```
