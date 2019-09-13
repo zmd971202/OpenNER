@@ -110,7 +110,7 @@ python run_correction_model.py --data_dir=data/ --dev_dir=data/ --test_dir=data/
 - Data set
   - AnchorNER: [data](https://drive.google.com/file/d/1Qm3WCWLOPRgTJUuXBKrOLPr20V5yOa5i/view?usp=sharing)
 
-You can download the models above and put them wherever you want. You only need to set the $\texttt{model_dir}$ parameter in the OpenNER class to the address where the model is located. For example:
+You can download the models above and put them wherever you want. You only need to set the model_dir parameter in the OpenNER class to the address where the model is located. For example:
 
 ```python
 # load OpenNER from a specific location
