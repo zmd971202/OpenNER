@@ -336,7 +336,7 @@ def main():
                         default=None,
                         type=str,
                         required=False,
-                        help="The input data dir. Should contain the .tsv files (or other data files) for the task.")
+                        help="The output file where the model predictions will be written.")
     parser.add_argument("--bert_model", default=None, type=str, required=True,
                         help="Bert pre-trained model selected in the list: bert-base-uncased, "
                         "bert-large-uncased, bert-base-cased, bert-large-cased, bert-base-multilingual-uncased, "
