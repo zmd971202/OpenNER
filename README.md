@@ -89,3 +89,16 @@ UCSB B-ORG
 ```
 CUDA_VISIBLE_DEVICES=0 python main.py --input=data/input.txt --output=data/output.txt
 ```
+
+
+
+#### 3. Train correction model
+
+Each line of the input file is in this format: "token Wiki_label DocRED_label"
+
+#### run
+
+```
+python run_correction_model.py --data_dir=data/ --dev_dir=data/ --test_dir=data/ --bert_model=bert-base-cased --task_name=ner --output_dir=out_xxx --max_seq_length=128 --do_train --num_train_epochs 5 --do_eval --warmup_proportion=0.4
+```
+
