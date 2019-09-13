@@ -132,7 +132,10 @@ def readfile(filename):
                 continue
             splits = line.split(' ')
             sentence.append(splits[0])
-            fea.append(splits[-2])
+            if len(splits) == 2:
+                fea.append(splits[-1][:-1])
+            else:
+                fea.append(splits[-2])
             label.append(splits[-1][:-1])
         except Exception as e:
             pass
@@ -171,17 +174,17 @@ class NerProcessor(DataProcessor):
     def get_train_examples(self, data_dir):
         """See base class."""
         return self._create_examples(
-            self._read_tsv(data_dir, "train")
+            self._read_tsv(data_dir), "train")
 
     def get_dev_examples(self, data_dir):
         """See base class."""
         return self._create_examples(
-            self._read_tsv(data_dir, "dev")
+            self._read_tsv(data_dir), "dev")
 
     def get_test_examples(self, data_dir):
         """See base class."""
         return self._create_examples(
-            self._read_tsv(data_dir, "test")
+            self._read_tsv(data_dir), "test")
 
     def get_labels(self):
         return ["O", "B-MISC", "I-MISC",  "B-PER", "I-PER", "B-ORG", "I-ORG", "B-LOC", "I-LOC", "[CLS]", "[SEP]"]
@@ -332,7 +335,7 @@ def main():
     parser.add_argument("--pred_file",
                         default=None,
                         type=str,
-                        required=True,
+                        required=False,
                         help="The input data dir. Should contain the .tsv files (or other data files) for the task.")
     parser.add_argument("--bert_model", default=None, type=str, required=True,
                         help="Bert pre-trained model selected in the list: bert-base-uncased, "
@@ -477,7 +480,7 @@ def main():
     train_examples = None
     num_train_optimization_steps = None
     if args.do_train:
-        train_examples = processor.get_train_examples(args.data_dir)
+        train_examples = processor.get_train_examples(args.train_file)
         num_train_optimization_steps = int(
             len(train_examples) / args.train_batch_size / args.gradient_accumulation_steps) * args.num_train_epochs
         if args.local_rank != -1:
@@ -598,7 +601,7 @@ def main():
                     global_step += 1
 
             print("Start Evaluating epoch %d ..." % _)
-            eval_examples = processor.get_dev_examples(args.dev_dir)
+            eval_examples = processor.get_dev_examples(args.dev_file)
             eval_features, raw_ = convert_examples_to_features(eval_examples, label_list, args.max_seq_length, tokenizer)
             logger.info("***** Running dev evaluation *****")
             logger.info("  Num examples = %d", len(eval_examples))
@@ -705,7 +708,7 @@ def main():
 
     if args.do_eval and (args.local_rank == -1 or torch.distributed.get_rank() == 0):
         out_file = open(args.pred_file, "w", encoding='utf-8')
-        eval_examples = processor.get_test_examples(args.test_dir)
+        eval_examples = processor.get_test_examples(args.test_file)
         eval_features, raw_data = convert_examples_to_features(eval_examples, label_list, args.max_seq_length, tokenizer)
         logger.info("***** Running evaluation *****")
         logger.info("  Num examples = %d", len(eval_examples))

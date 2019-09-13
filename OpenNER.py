@@ -291,7 +291,7 @@ def convert_examples_to_features(examples, label_list, max_seq_length, tokenizer
 
 
 class OpenNER():
-    def __init__(self, bert_model='bert-base-cased', model_dir='OpenNER_base/', max_seq_length=128, eval_batch_size=32, do_lower_case=False, local_rank=-1, no_cuda=False):
+    def __init__(self, bert_model='bert-base-cased', model_dir='model/OpenNER_base/', max_seq_length=128, eval_batch_size=32, do_lower_case=False, local_rank=-1, no_cuda=False):
         if local_rank == -1 or no_cuda:
             self.device = torch.device("cuda" if torch.cuda.is_available() and not no_cuda else "cpu")
             self.n_gpu = torch.cuda.device_count()

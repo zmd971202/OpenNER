@@ -22,7 +22,7 @@ def main():
                         type=str,
                         help="Bert pre-trained model selected in the list: bert-base-cased, bert-large-cased.")
     parser.add_argument("--model_dir",
-                        default='OpenNER_base/',
+                        default='model/OpenNER_base/',
                         type=str,
                         help="The model dir.")
     parser.add_argument("--max_seq_length",
