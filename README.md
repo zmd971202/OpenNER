@@ -6,8 +6,6 @@
 
 ### Example Usage
 
-Let's run named entity recognition (NER) over an example sentence. All you need to do is load OpenNER and use it to predict tags for the sentence.
-
 #### 1. Load OpenNER in python
 
 #### Predict one sentence
