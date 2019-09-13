@@ -102,3 +102,20 @@ Each line of the input file is in this format: "token Wiki_label DocRED_label"
 python run_correction_model.py --data_dir=data/ --dev_dir=data/ --test_dir=data/ --bert_model=bert-base-cased --task_name=ner --output_dir=out_xxx --max_seq_length=128 --do_train --num_train_epochs 5 --do_eval --warmup_proportion=0.4
 ```
 
+
+
+#### 4. Download
+
+- Models:
+  - OpenNER-base: [model](https://drive.google.com/file/d/1Zwkp6pvuqVn2idO5KQp_Casx4VjBxHyB/view?usp=sharing)
+  - OpenNER-large: [model](https://drive.google.com/file/d/15ID9cOSJC2NMJNrv6vqbdXfOlHb7wT3w/view?usp=sharing)
+- Data set
+  - AnchorNER: [data](https://drive.google.com/file/d/1Qm3WCWLOPRgTJUuXBKrOLPr20V5yOa5i/view?usp=sharing)
+
+You can download the models above and put them wherever you want. You only need to set the $\texttt{model_dir}$ parameter in the OpenNER class to the address where the model is located. For example:
+
+```python
+# load OpenNER from a specific location
+tagger = OpenNER(model_dir='./model/OpenNER_base')
+```
+
