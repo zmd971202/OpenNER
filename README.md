@@ -118,12 +118,22 @@ CUDA_VISIBLE_DEVICES=0 python main.py --input=input.txt --output=output.txt --be
 
 ### 3. Train correction model
 
+#### Train
+
+Each line of the input file is in this format: "token Wiki_label DocRED_label"
+
 ```
 cd correction
 python run_correction_model.py --train_file=data/D1_train.txt --dev_file=data/D1_dev.txt --test_file=data/D1_test.txt --bert_model=bert-base-cased --task_name=ner --output_dir=out_D1_model --max_seq_length=128 --do_train --num_train_epochs 5 --do_eval --warmup_proportion=0.4
 ```
 
-Each line of the input file is in this format: "token Wiki_label DocRED_label"
 
-If you only want to do testing, just remove do_train from the script above.
+#### Test
+
+Remove --do_train and specify pred_file to save outputs
+
+```
+python run_correction_model.py --train_file=data/D1_train.txt --dev_file=data/D1_dev.txt --test_file=data/D1_test.txt --pred_file=data/pred.txt --bert_model=bert-base-cased --task_name=ner --output_dir=out_D1_model --max_seq_length=128 --do_eval --warmup_proportion=0.4
+```
+
 
