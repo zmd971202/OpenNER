@@ -1,5 +1,7 @@
 # OpenNER
 
+The code and data of [Towards Open-Domain Named Entity Recognition via Neural Correction Models](https://arxiv.org/abs/1909.06058)
+
 ## Requirements
 - python3
 - pip3 install -r requirements.txt
